@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // Original
+            function duplicateEncode(word) {
+              // 字串轉成小寫
+              const newWord = word.toLowerCase();
+              // 小寫字串轉成陣列
+              const wordArr = newWord.split("");
+              // 建立一個空陣列
+              const strArr = [];
+              // 建立一個空陣列
+              const indices = [];
+
+              // 把字串轉成 '('
+              wordArr.forEach((char) => strArr.push("("));
+
+              // 把陣列轉成字串 "(((" 等
+              let = newString = strArr.join("");
+
+              // 過濾出重複的字元
+              const findDuplicates = wordArr.filter((char, index) => wordArr.indexOf(char) !== index);
+
+              // 清除重複的字元
+              let = uniqueArr = [...new Set(findDuplicates)];
+
+              // 找出重複字元的位置 index
+              uniqueArr.forEach((char) => {
+                let idx = newWord.indexOf(char);
+                while (idx !== -1) {
+                  indices.push(idx);
+                  idx = newWord.indexOf(char, idx + 1);
+                }
+              });
+
+              // 把重覆的字元轉成 ')'
+              const setCharAt = (str, index, char) => {
+                if (index > str.length - 1) return str
+                return str.substring(0, index) + char + str.substring(index + 1)
+              }
+
+              indices.forEach((num) => newString = setCharAt(newString, num, ")"));
+
+              return newString;
+            }
+
+
+            // Clever
+            function duplicateEncodeClever(word) {
+              return word
+                .toLowerCase()
+                .split('')
+                .map((value, index, arr) => {
+                  // 如果字元在陣列中的位置等於第一次出現的位置，回傳 '('，否則回傳 ')'
+                  return arr.indexOf(value) === arr.lastIndexOf(value) ? '(' : ')'
+                })
+                .join('')
+            }
+
+            duplicateEncodeClever('din')
+            duplicateEncodeClever('recede')
+            duplicateEncodeClever('Success')
+            duplicateEncodeClever('(( @')
+        </script>
+    </body>
+</html>

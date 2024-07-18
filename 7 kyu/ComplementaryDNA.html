@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // Original
+            function dnaStrand(dna){
+                const pairsData = {
+                    A: 'T',
+                    T: 'A',
+                    C: 'G',
+                    G: 'C',
+                    C: 'G',
+                    CT: 'R',
+                    AG: 'Y',
+                    GC: 'S*',
+                    AT: 'W*',
+                    'T/UG': 'M',
+                    AC: 'K',
+                    CGT: 'V',
+                    AGT: 'H',
+                    ACT: 'D',
+                    ACG: 'B',
+                    ACGT: 'N',
+                }
+
+                const result = dna.split('').map((char) => pairsData[char])
+                return result.join('')
+            }
+
+            // Clever
+            function DNAStrand(dna) {
+                return dna.replace(/./g, function(c) {
+                    return DNAStrand.pairs[c]
+                })
+            }
+
+            DNAStrand.pairs = {
+                A: 'T',
+                T: 'A',
+                C: 'G',
+                G: 'C',
+            }
+
+            dnaStrand("AAAA")
+            dnaStrand("ATTGC")
+            dnaStrand("GTAT")
+        </script>
+    </body>
+</html>

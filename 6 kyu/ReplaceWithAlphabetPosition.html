@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // Original
+            function alphabetPosition(text) {
+                const str = text.toLowerCase().split(' ').join('');
+                const arr = str.split('').map((letter) => {
+                    return (letter.charCodeAt(0) - 97 + 1).toString() + ' '
+                })
+
+                const newArr = arr.map((char) => {
+                    return char.includes('-') || char <= 0 || char > 26 ? '' : char
+                })
+
+                return newArr.join('').trim();
+            }
+
+            // Clever
+            function alphabetPosition(text) {
+                var result = "";
+                for (var i = 0; i < text.length; i++){
+                    var code = text.toUpperCase().charCodeAt(i)
+                    if (code > 64 && code < 91) result += (code - 64) + " ";
+                }
+
+                return result.slice(0, result.length-1);
+            }
+
+            // Copilot
+            function alphabetPosition(text) {
+                return text
+                    .toLowerCase()
+                    .replace(/[^a-z]/g, '')
+                    .split('')
+                    .map(letter => letter.charCodeAt(0) - 96)
+                    .join(' ');
+            }
+
+            alphabetPosition("The sunset sets at twelve o' clock.")
+            // alphabetPosition("The narwhal bacons at midnight.")
+        </script>
+    </body>
+</html>

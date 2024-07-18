@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // Original
+            function squareDigits(num) {
+                // 數字轉成陣列
+                const digits = num.toString().split("");
+                const result = digits.map((digit) => parseInt(digit) ** 2).join('')
+                return parseInt(result);
+            }
+
+            // Clever
+            function squareDigitsClever(num){
+                return Number(('' + num).split('').map((val) => val * val).join(''));
+            }
+
+            // 字串數字 * 字串數字會自動轉成數字
+            console.log('9' * '9');
+
+            squareDigits(3212)
+            squareDigits(4114)
+            squareDigits(9219)
+        </script>
+    </body>
+</html>
